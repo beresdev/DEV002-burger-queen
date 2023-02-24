@@ -1,0 +1,23 @@
+.footer-section {
+    grid-area: footer;
+  }
+
+.home-button {
+  margin: 2rem;
+  font-size: 4rem;
+  color: var(--emphasis-color);
+  font-weight: bold;
+  border: none;
+}
+
+.menu-button {
+  width: 15rem;
+  height: 5rem;
+  margin: 0 2rem;
+  background-color: var(--complementary-color);
+  border-radius: 2rem;
+  border: none;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--emphasis-color);
+}
