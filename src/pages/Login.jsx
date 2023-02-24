@@ -8,10 +8,10 @@ export function Login() {
         <img src="/LasChidas_500x500.png" alt="logotipo-las-chidas" />
       </div>
       <form className="form">
-        <label>User name: </label>
+        <label>Username: </label>
         <input type="text" />
-        <label>Pasword: </label>
-        <input type="text" />
+        <label>Password: </label>
+        <input type="password" />
         <button>
           <Link to="/MenuW">Iniciar Sesión</Link>
         </button>

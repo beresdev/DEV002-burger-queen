@@ -22,6 +22,8 @@
     height: 5rem;
     border-radius: 1rem;
     margin-bottom: 4rem;
+    font-size: 2rem;
+    text-indent: 1rem;
 }
 
 .form button {
