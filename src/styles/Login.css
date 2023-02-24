@@ -1,0 +1,53 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form label {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--emphasis-color);
+}
+
+.form input {
+    width: 40rem;
+    height: 5rem;
+    border-radius: 1rem;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    text-indent: 1rem;
+}
+
+.form button {
+    width: 20rem;
+    height: 5rem;
+    border-radius: 1rem;
+    background-color: var(--complementary-color);
+    margin: 0 auto;
+}
+
+.form button a {
+    font-size: 2.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--complementary-color);
+    color: var(--emphasis-color)
+}
+
+.form button:hover {
+  background-color: var(--emphasis-color);
+  cursor: pointer;
+}
+
+.form button a:hover {
+  background-color: var(--emphasis-color);
+  color: var(--main-color);
+}

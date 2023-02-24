@@ -1,0 +1,46 @@
+{
+  "breakfast": [
+    {
+      "id": "01",
+      "item": "Café americano",
+      "price": "$24.00"
+    },
+    {
+      "id": "02",
+      "item": "Café con leche",
+      "price": "$34.00"
+    },
+    {
+      "id": "03",
+      "item": "Sandwich de jamón y queso",
+      "price": "$48.00"
+    },
+    {
+      "id": "04",
+      "item": "Jugo de frutas natural",
+      "price": "$34.00"
+    }
+  ],
+  "lunchDinner": [
+    {
+      "id": "05",
+      "item": "Hamburguesa simple",
+      "price": "$24.00"
+    },
+    {
+      "id": "06",
+      "item": "Hamburguesa doble",
+      "price": "$34.00"
+    },
+    {
+      "id": "07",
+      "item": "Gaseosa 500ml",
+      "price": "$48.00"
+    },
+    {
+      "id": "08",
+      "item": "Gaseosa 750ml",
+      "price": "$34.00"
+    }
+  ]
+}

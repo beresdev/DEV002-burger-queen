@@ -1,0 +1,95 @@
+.main-NewOrder {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-areas:
+    "header header"
+    "menu bill"
+    "footer footer"
+    ;
+}
+
+.products-section {
+    height: 100%;
+    grid-area: menu;
+}
+
+.bill-section {
+    height: 100%;
+    grid-area: bill;
+}
+
+.menu-types-selector {
+    width: 400px;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.option {
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--emphasis-color);
+    border-radius: 2rem;
+    border: none;
+    background-color: var(--complementary-color);
+}
+
+.option:hover {
+    cursor: pointer;
+    background-color: var(--emphasis-color);
+    color: var(--main-color)
+}
+
+.products-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product {
+    width: 150px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem;
+    background-color: var(--emphasis-color);
+    color: var(--main-color);
+    border-radius: 10px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    outline: none;
+    transition: 0.2s all;
+}
+
+.product>p {
+    background-color: var(--emphasis-color);
+}
+
+.product:hover {
+    cursor: pointer;
+    background-color: var(--emphasis-color);
+}
+
+.product:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(19, 244, 64, 0.24);
+}
+
+.product p {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.product-price {
+    font-weight: bold;
+}

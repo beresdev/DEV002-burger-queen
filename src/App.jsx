@@ -3,10 +3,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Login } from './components/Login';
-import { MenuW } from "./components/MenuW";
-import { NewOrder } from "./components/NewOrder";
-import { MyOrders } from "./components/MyOrders";
+import { Login } from './pages/Login';
+import { MenuW } from "./pages/MenuW";
+import { NewOrder } from "./pages/NewOrder";
+import { MyOrders } from "./pages/MyOrders";
 
 
 const router = createHashRouter([
