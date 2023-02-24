@@ -1,11 +1,11 @@
-import data from "../menu.json";
+import data from '../menu.json'
 
-export function ProductCard(type) {
-  let key = Object.values(type).toString();
+export function ProductCard (type) {
+  const key = Object.values(type).toString()
   return data[key].map((data) => (
-    <div className="product" key={data.id}>
-      <p className="product-name">{data.item}</p>
-      <p className="product-price">{data.price}</p>
+    <div className='product' key={data.id}>
+      <p className='product-name'>{data.item}</p>
+      <p className='product-price'>{data.price}</p>
     </div>
-  ));
+  ))
 }

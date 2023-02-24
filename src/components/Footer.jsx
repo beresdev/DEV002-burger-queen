@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
-export function Footer({children}) {
+export function Footer ({ children }) {
   return (
-    <section className="footer-section">
-      <Link to="/MenuW">
-        <button className="home-button">
-          <i className="fa-solid fa-house"></i>
+    <section className='footer-section'>
+      <Link to='/MenuW'>
+        <button className='home-button'>
+          <i className='fa-solid fa-house' />
         </button>
       </Link>
       {children}
     </section>
-  );
+  )
 }

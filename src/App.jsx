@@ -1,38 +1,37 @@
 import {
   createHashRouter,
-  RouterProvider,
-} from "react-router-dom";
+  RouterProvider
+} from 'react-router-dom'
 
-import { Login } from './pages/Login';
-import { MenuW } from "./pages/MenuW";
-import { NewOrder } from "./pages/NewOrder";
-import { MyOrders } from "./pages/MyOrders";
-
+import { Login } from './pages/Login'
+import { MenuW } from './pages/MenuW'
+import { NewOrder } from './pages/NewOrder'
+import { MyOrders } from './pages/MyOrders'
 
 const router = createHashRouter([
   {
-    path: "/",
+    path: '/',
     element: <Login />
   },
   {
-    path: "/MenuW",
+    path: '/MenuW',
     element: <MenuW />
   },
   {
-    path: "/NewOrder",
+    path: '/NewOrder',
     element: <NewOrder />
   },
   {
-    path: "/MyOrders",
+    path: '/MyOrders',
     element: <MyOrders />
   },
   {
-    path: "*",
+    path: '*',
     element: <h1>🎃 Not found</h1>
   }
 ])
 
-function App() {
+function App () {
   return (
     <RouterProvider router={router} />
   )
