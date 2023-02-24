@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Header } from '../components/Header';
 import { ProductCard } from '../components/ProductCard';
 import { Bill } from "../components/Bill";
+import { Footer } from '../components/Footer';
+import { MenuButton } from '../components/MenuButton';
 
 export function NewOrder() {
 
@@ -19,7 +21,16 @@ return (
         <ProductCard type = {isSelected} />
       </div> 
     </section>
-    <Bill className="bill-section"/>
+    <Bill>
+      <div className='buttons-container'>
+        <MenuButton text = {'Cancel'}/>
+        <MenuButton text = {'Send Kitchen'}/>
+      </div>
+    </Bill>
+    <Footer>
+      <MenuButton text = {'NEW ORDER'} route = {'/NewOrder'}/>
+      <MenuButton text = {'MY ORDERS'} route = {'/MyOrders'}/>
+    </Footer>
   </main>
   )
 }
