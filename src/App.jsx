@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   createHashRouter,
   RouterProvider
@@ -7,6 +8,8 @@ import { Login } from './pages/Login'
 import { MenuW } from './pages/MenuW'
 import { NewOrder } from './pages/NewOrder'
 import { MyOrders } from './pages/MyOrders'
+import { ProtectedRoute } from './pages/ProtectedRoute'
+import { AuthContextProvider } from './context/AuthContext'
 
 const router = createHashRouter([
   {
@@ -15,7 +18,7 @@ const router = createHashRouter([
   },
   {
     path: '/MenuW',
-    element: <MenuW />
+    element: <ProtectedRoute><MenuW /></ProtectedRoute>
   },
   {
     path: '/NewOrder',
@@ -33,7 +36,9 @@ const router = createHashRouter([
 
 function App () {
   return (
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   )
 }
 
