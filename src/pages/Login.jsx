@@ -1,17 +1,16 @@
-import { React ,useState} from 'react'
-import { useNavigate } from 'react-router-dom';
-import { UserAuth} from '../context/AuthContext'
+import { React, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { UserAuth } from '../context/AuthContext'
 
 export function Login () {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const { signIn } = UserAuth();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [setError] = useState('')
+  const navigate = useNavigate()
+  const { signIn } = UserAuth()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setError('')
     try {
       await signIn(email, password)
@@ -20,7 +19,7 @@ export function Login () {
       setError(e.message)
       console.log(e.message)
     }
-  };
+  }
 
   return (
     <>
