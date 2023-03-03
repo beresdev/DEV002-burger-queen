@@ -9,7 +9,7 @@ import { MenuW } from './pages/MenuW/MenuW'
 import { NewOrder } from './pages/NewOrder/NewOrder'
 import { MyOrders } from './pages/MyOrders/MyOrders'
 import { ProtectedRoute } from './ProtectedRoute'
-import { AuthContextProvider } from './context/AuthContext'
+
 
 const router = createHashRouter([
   {
@@ -35,11 +35,7 @@ const router = createHashRouter([
 ])
 
 function App () {
-  return (
-    <AuthContextProvider>
-      <RouterProvider router={router} />
-    </AuthContextProvider>
-  )
+  return (<RouterProvider router={router} />)
 }
 
 export default App
