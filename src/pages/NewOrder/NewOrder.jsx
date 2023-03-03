@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Header } from '../components/Header'
-import { ProductCard } from '../components/ProductCard'
-import { Bill } from '../components/Bill'
-import { Footer } from '../components/Footer'
-import { MenuButton } from '../components/MenuButton'
+import { Header } from '../../components/Header/Header'
+import { ProductCard } from '../../components/ProductCard/ProductCard'
+import { Bill } from '../../components/Bill/Bill'
+import { Footer } from '../../components/Footer/Footer'
+import { MenuButton } from '../../components/MenuButton/MenuButton'
 
 export function NewOrder () {
   const [isSelected, setIsSelected] = useState('breakfast')

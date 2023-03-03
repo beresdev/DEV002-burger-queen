@@ -1,4 +1,4 @@
-import data from '../menu.json'
+import data from '../../menu.json'
 
 export function ProductCard (type) {
   const key = Object.values(type).toString()

@@ -10,7 +10,7 @@ import { auth } from '../firebase/firebaseInit.js'
 const UserContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(null)
 
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)

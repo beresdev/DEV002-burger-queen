@@ -4,11 +4,11 @@ import {
   RouterProvider
 } from 'react-router-dom'
 
-import { Login } from './pages/Login'
-import { MenuW } from './pages/MenuW'
-import { NewOrder } from './pages/NewOrder'
-import { MyOrders } from './pages/MyOrders'
-import { ProtectedRoute } from './pages/ProtectedRoute'
+import { Login } from './pages/Login/Login'
+import { MenuW } from './pages/MenuW/MenuW'
+import { NewOrder } from './pages/NewOrder/NewOrder'
+import { MyOrders } from './pages/MyOrders/MyOrders'
+import { ProtectedRoute } from './ProtectedRoute'
 import { AuthContextProvider } from './context/AuthContext'
 
 const router = createHashRouter([
