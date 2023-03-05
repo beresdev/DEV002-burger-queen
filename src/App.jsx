@@ -1,41 +1,48 @@
-import React from 'react'
-import {
-  createHashRouter,
-  RouterProvider
-} from 'react-router-dom'
+import { React, useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Login } from './pages/Login/Login'
-import { MenuW } from './pages/MenuW/MenuW'
-import { NewOrder } from './pages/NewOrder/NewOrder'
-import { MyOrders } from './pages/MyOrders/MyOrders'
-import { ProtectedRoute } from './ProtectedRoute'
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebaseInit";
+import { Login } from "./pages/Login/Login";
+import { MenuW } from "./pages/MenuW/MenuW";
+import { NewOrder } from "./pages/NewOrder/NewOrder";
+import { MyOrders } from "./pages/MyOrders/MyOrders";
 
+function App() {
+  const [user, setUser] = useState(false);
 
-const router = createHashRouter([
-  {
-    path: '/',
-    element: <Login />
-  },
-  {
-    path: '/MenuW',
-    element: <ProtectedRoute><MenuW /></ProtectedRoute>
-  },
-  {
-    path: '/NewOrder',
-    element: <NewOrder />
-  },
-  {
-    path: '/MyOrders',
-    element: <MyOrders />
-  },
-  {
-    path: '*',
-    element: <h1>🎃 Not found</h1>
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth (user => {
+      setUser(user);
+    }));
+
+    return unsubscribe;
+  }, []);
+
+  console.log(user);
+
+  if(user === null) {
+    return <div>Loading ... ⏳</div>
   }
-])
 
-function App () {
-  return (<RouterProvider router={router} />)
+  return(
+    <BrowserRouter>
+    <Routes>
+      if(user) {
+        <>
+          <Route path="/MenuW" element={<MenuW />} />
+          <Route path="/NewOrder" element={<NewOrder />} />
+          <Route path="/MyOrders" element={<MyOrders />} />
+        </>
+      } else {
+        <>
+          <Route path="/" element={<Login />} />
+          <Route path="*" element={<h1>🎃 Not found</h1>} />
+        </>
+      }
+    </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App
+export default App;

@@ -1,10 +1,10 @@
 import {
     signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged
   } from 'firebase/auth'
-  
-  import { auth } from './firebaseInit.js'
+
+//import { onAuthStateChanged } from 'firebase/auth'; 
+import { auth } from './firebaseInit.js'
 
   export const signIn = async(email, password) => { 
     try {
@@ -17,10 +17,10 @@ import {
 
   export const logout = () => { return signOut(auth) };
 
-  export const isUser = () => {onAuthStateChanged(auth, (user) => {
-    if(user) {
-        console.log(user);
-        return user;
-    } else {
-      console.log('no usuario')
-    }})};
+  // export const isUser = () => {onAuthStateChanged(auth, (user) => {
+  //   if(user) {
+  //       console.log(user);
+  //       return user;
+  //   } else {
+  //     console.log('no usuario')
+  //   }})};
