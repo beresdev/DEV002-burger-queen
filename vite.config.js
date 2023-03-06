@@ -6,6 +6,11 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
-    globals: true
+    globals: true,
+    coverage: {
+      path: 'coverage',
+      include: ['src/**/*.jsx'],
+      reporters: ['text', 'html']
+    }
   }
 })

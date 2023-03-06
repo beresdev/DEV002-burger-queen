@@ -1,6 +1,6 @@
-import { React, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { signIn } from '../../firebase/firebaseFunctions.js';
+import { React, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { signIn } from '../../firebase/firebaseFunctions.js'
 
 export function Login () {
   const [email, setEmail] = useState('')
@@ -14,7 +14,7 @@ export function Login () {
     try {
       await signIn(email, password)
       navigate('/MenuW')
-    } catch (error) {
+    } catch (e) {
       setError(error.message)
       console.log(error.message)
     }
