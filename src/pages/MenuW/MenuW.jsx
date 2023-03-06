@@ -7,7 +7,7 @@ export function MenuW () {
   console.log('Entrando a MenuW');
   const navigate = useNavigate()
 
-  const handleLogout = async () => {
+  const handleLogout = async (e) => {
     try {
       await logout()
       console.log('logout')
