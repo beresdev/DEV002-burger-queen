@@ -1,45 +1,45 @@
-import React from 'react'
-import {
-  createHashRouter,
-  RouterProvider
-} from 'react-router-dom'
+import { React, useState, useEffect } from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
-import { Login } from './pages/Login/Login'
-import { MenuW } from './pages/MenuW/MenuW'
-import { NewOrder } from './pages/NewOrder/NewOrder'
-import { MyOrders } from './pages/MyOrders/MyOrders'
-import { ProtectedRoute } from './ProtectedRoute'
-import { AuthContextProvider } from './context/AuthContext'
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebaseInit";
+import { Login } from "./pages/Login/Login";
+import { MenuW } from "./pages/MenuW/MenuW";
+import { NewOrder } from "./pages/NewOrder/NewOrder";
+import { MyOrders } from "./pages/MyOrders/MyOrders";
 
-const router = createHashRouter([
-  {
-    path: '/',
-    element: <Login />
-  },
-  {
-    path: '/MenuW',
-    element: <ProtectedRoute><MenuW /></ProtectedRoute>
-  },
-  {
-    path: '/NewOrder',
-    element: <NewOrder />
-  },
-  {
-    path: '/MyOrders',
-    element: <MyOrders />
-  },
-  {
-    path: '*',
-    element: <h1>🎃 Not found</h1>
-  }
-])
+function App() {
+  const [user, setUser] = useState(false);
 
-function App () {
-  return (
-    <AuthContextProvider>
-      <RouterProvider router={router} />
-    </AuthContextProvider>
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user => {
+      if(user)
+      setUser(true);
+    }));
+    return unsubscribe;
+  }, []);
+
+  console.log(user);
+
+  return(
+    <HashRouter>
+      <Routes>
+        {user ? (
+            <>
+              <Route path="/MenuW" element={<MenuW />} />
+              <Route path="/NewOrder" element={<NewOrder />} />
+              <Route path="/MyOrders" element={<MyOrders />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Login />}  />
+              <Route path="*" element={<Login />} />
+            </>
+          )}
+          <Route path="/" element={<Login />}  />
+      </Routes>
+    </HashRouter>
   )
 }
 
-export default App
+export default App;

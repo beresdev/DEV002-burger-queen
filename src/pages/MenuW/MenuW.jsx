@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Header } from '../../components/Header/Header'
-import { UserAuth } from '../../context/AuthContext.jsx'
+import { logout } from '../../firebase/firebaseFunctions'
 
 export function MenuW () {
-  const { logout } = UserAuth()
+  console.log('Entrando a MenuW');
   const navigate = useNavigate()
 
-  const handleLogout = async () => {
+  const handleLogout = async (e) => {
     try {
       await logout()
       console.log('logout')

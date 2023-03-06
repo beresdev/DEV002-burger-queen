@@ -41,6 +41,11 @@
       "id": "08",
       "item": "Gaseosa 750ml",
       "price": "$34.00"
+    },
+    {
+      "id": "09",
+      "item": "Gaseosa 1L",
+      "price": "$34.00"
     }
   ]
 }
