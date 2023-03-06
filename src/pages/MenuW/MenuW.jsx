@@ -4,7 +4,7 @@ import { Header } from '../../components/Header/Header'
 import { logout } from '../../firebase/firebaseFunctions'
 
 export function MenuW () {
-  console.log('Entrando a MenuW');
+  console.log('Entrando a MenuW')
   const navigate = useNavigate()
 
   const handleLogout = async (e) => {
