@@ -34,17 +34,32 @@
     },
     {
       "id": "07",
+      "item": "Papas fritas",
+      "price": "$12.00"
+    },
+    {
+      "id": "08",
+      "item": "Aros de cebolla",
+      "price": "$12.00"
+    },
+    {
+      "id": "09",
+      "item": "Agua 500ml",
+      "price": "$12.00"
+    },
+    {
+      "id": "10",
+      "item": "Agua 750ml",
+      "price": "$48.00"
+    },
+    {
+      "id": "11",
       "item": "Gaseosa 500ml",
       "price": "$48.00"
     },
     {
-      "id": "08",
+      "id": "12",
       "item": "Gaseosa 750ml",
-      "price": "$34.00"
-    },
-    {
-      "id": "09",
-      "item": "Gaseosa 1L",
       "price": "$34.00"
     }
   ]

@@ -12,7 +12,9 @@ function App () {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user) { setUser(true) }
+      if (user) { setUser(true)
+      localStorage.setItem("name",user.email);
+      }
     })
     return unsubscribe
   }, [])
