@@ -7,7 +7,12 @@ import { MenuButton } from '../../components/MenuButton/MenuButton'
 
 export function NewOrder () {
   const [isSelected, setIsSelected] = useState('breakfast')
+  const [product, setProduct] = useState(null)
 
+  const setProductId = (id) => {
+    setProduct(id)
+  }
+  console.log(product);
   return (
     <main className='main-NewOrder'>
       <Header />
@@ -17,10 +22,10 @@ export function NewOrder () {
           <button className='option' onClick={() => { setIsSelected('lunchDinner') }}>Lunch/Dinner</button>
         </div>
         <div className='products-container'>
-          <ProductCard type={isSelected} />
+          <ProductCard type={isSelected} setProductId={setProductId} />
         </div>
       </section>
-      <Bill>
+      <Bill type={isSelected} productId = {product}>
         <div className='buttons-container'>
           <MenuButton text='Cancel' />
           <MenuButton text='Send Kitchen' />
