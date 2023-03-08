@@ -6,13 +6,17 @@ import { Footer } from '../../components/Footer/Footer'
 import { MenuButton } from '../../components/MenuButton/MenuButton'
 
 export function NewOrder () {
-  const [isSelected, setIsSelected] = useState('breakfast')
-  const [product, setProduct] = useState(null)
+  const [isSelected, setIsSelected] = useState('breakfast');
+  const [product, setProduct] = useState(null);
+  let products = [];
 
-  const setProductId = (id) => {
-    setProduct(id)
+  const setProductProp = (data) => {
+    setProduct(data)
   }
+  
+  products.push(product)
   console.log(product);
+  console.log(products);
   return (
     <main className='main-NewOrder'>
       <Header />
@@ -22,10 +26,10 @@ export function NewOrder () {
           <button className='option' onClick={() => { setIsSelected('lunchDinner') }}>Lunch/Dinner</button>
         </div>
         <div className='products-container'>
-          <ProductCard type={isSelected} setProductId={setProductId} />
+          <ProductCard type={isSelected} setProductProp={setProductProp} />
         </div>
       </section>
-      <Bill type={isSelected} productId = {product}>
+      <Bill type={isSelected} productProp = {product}>
         <div className='buttons-container'>
           <MenuButton text='Cancel' />
           <MenuButton text='Send Kitchen' />
