@@ -1,22 +1,25 @@
 import { useState } from 'react'
 import { Header } from '../../components/Header/Header'
 import { ProductCard } from '../../components/ProductCard/ProductCard'
-import { Bill } from '../../components/Bill/Bill'
+// import { Bill } from '../../components/Bill/Bill'
 import { Footer } from '../../components/Footer/Footer'
 import { MenuButton } from '../../components/MenuButton/MenuButton'
 
+
 export function NewOrder () {
   const [isSelected, setIsSelected] = useState('breakfast');
-  const [product, setProduct] = useState(null);
-  let products = [];
+  const [order, setOrder] = useState([])
 
   const setProductProp = (data) => {
-    setProduct(data)
+    const newData = {...data, subtotal: (data.quantity * data.price)}
+    setOrder([...order, newData])
   }
   
-  products.push(product)
-  console.log(product);
-  console.log(products);
+  const total = order.reduce((sum, item) => sum + item.subtotal, 0)
+  console.log(total)
+  console.log(order)
+
+
   return (
     <main className='main-NewOrder'>
       <Header />
@@ -29,12 +32,21 @@ export function NewOrder () {
           <ProductCard type={isSelected} setProductProp={setProductProp} />
         </div>
       </section>
-      <Bill type={isSelected} productProp = {product}>
-        <div className='buttons-container'>
-          <MenuButton text='Cancel' />
-          <MenuButton text='Send Kitchen' />
+      <section className='bill-section'>
+        <div className='bill-container'>
+          <ul>
+            {order.map((item) => (
+              <li key={item.id}>
+                {item.item} - $ {item.price}
+                <p>{item.total}</p>
+              </li>
+            ))}
+          </ul>
+          <p>{total}</p>
         </div>
-      </Bill>
+        <MenuButton text='Cancel' />
+        <MenuButton text='Send Kitchen' />
+      </section>
       <Footer>
         <MenuButton text='NEW ORDER' route='/NewOrder' />
         <MenuButton text='MY ORDERS' route='/MyOrders' />
