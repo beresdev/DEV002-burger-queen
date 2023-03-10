@@ -13,7 +13,7 @@ export function Order({ products, productOperation }) {
             <p>${item.subtotal}</p>
           </div>
           <div className="trash-container">
-            <i className="fa-solid fa-trash"></i>
+            <i className="fa-solid fa-trash" onClick={() => {productOperation(item.id, 'del')}}></i>
           </div>
         </div>
       );

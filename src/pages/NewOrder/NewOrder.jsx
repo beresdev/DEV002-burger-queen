@@ -22,16 +22,21 @@ export function NewOrder() {
     }
   };
 
-  const productOperation = (id, opertaion) => {
+  const productOperation = (id, operation) => {
     const index = productsCopy.findIndex((element) => element.id === id);
-    if(opertaion === 'sub') {
+    if(operation === 'sub') {
       if (productsCopy[index].quantity > 1) {
         productsCopy[index].quantity -= 1;
       }
-    } else if (opertaion === 'add') {
+    } else if (operation === 'add') {
         productsCopy[index].quantity += 1;
       }
     productsCopy[index].subtotal = productsCopy[index].quantity * productsCopy[index].price;
+
+    if(operation === 'del') {
+        productsCopy.splice(index,1)
+      }
+
     setProducts(productsCopy);
   };
 
