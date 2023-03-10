@@ -33,10 +33,12 @@ export function NewOrder () {
         <div className='bill-container'>
           <span className='order-id'>Order: mvjri9w0n</span>
           <Order products = {products} total = {total} />
-          <span className='total'>Total: {total}</span>
+          <span className='total'>Total: $ {total}</span>
         </div>
-        <MenuButton text='Cancel' />
-        <MenuButton text='Send Kitchen' />
+        <div className='buttons-container'>
+          <MenuButton text='Cancel' />
+          <MenuButton text='Send Kitchen' />
+        </div>
       </section>
       <Footer>
         <MenuButton text='NEW ORDER' route='/NewOrder' />

@@ -13,12 +13,18 @@ const renderOrderItems = () => {
         addedItems.push(item.id) // agrega el ID al estado para que no se renderize de nuevo
         return (
           <div key={item.id} className='order-element'>
-            <button> + </button>
-            <p>1</p>
-            <button> - </button>
-            <p>{item.item}</p>
-            <p>${item.price}</p>
-            <button>X</button>
+            <div className="counters-buttons">
+              <i className="fa-solid fa-plus"></i>
+              <p className="counter">1</p>
+              <i className="fa-solid fa-minus"></i>
+            </div>
+            <div className="item-container">
+              <p>{item.item}</p>
+              <p>${item.price}</p>
+            </div>
+            <div className="trash-container">
+              <i class="fa-solid fa-trash"></i>
+            </div>
           </div>
         );
       }
