@@ -1,0 +1,16 @@
+.elements-container {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+}
+.order-element {
+    display: flex;
+    justify-items: center;
+}
+
+.order-element p{
+  font-size: 16px;
+}
