@@ -10,12 +10,20 @@ export function NewOrder () {
   const [products, setProducts] = useState([])
 
   const setProductProp = (data) => {
-    const newProduct = {...data, subtotal: (data.quantity * data.price)}
-    setProducts([...products, newProduct])
+    const productsCopy = [...products];
+    const index = productsCopy.findIndex((element)=> (element.id === data.id))
+    if(index === -1) {
+      const newProduct = {...data, subtotal: (data.quantity * data.price)}
+      setProducts([...products, newProduct])
+    } else {
+      productsCopy[index].quantity += 1;
+      productsCopy[index].subtotal = productsCopy[index].quantity * productsCopy[index].price;
+      console.log(productsCopy)
+      setProducts(productsCopy)
+    }
   }
 
   const total = products.reduce((sum, item) => sum + item.subtotal, 0)
-  console.log(total)
 
   return (
     <main className='main-NewOrder'>
@@ -31,9 +39,9 @@ export function NewOrder () {
       </section>
       <section className='bill-section'>
         <div className='bill-container'>
-          <span className='order-id'>Order: mvjri9w0n</span>
+          <p className='order-id'>Order: mvjri9w0n</p>
           <Order products = {products} total = {total} />
-          <span className='total'>Total: $ {total}</span>
+          <p className='total'>Total: $ {total}</p>
         </div>
         <div className='buttons-container'>
           <MenuButton text='Cancel' />
