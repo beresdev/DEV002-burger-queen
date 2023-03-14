@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Header } from '../../components/Header/Header'
 import { logout } from '../../firebase/firebaseFunctions'
 
-export function MenuW () {
+export function MenuW ({setOrderN}) {
   console.log('Entrando a MenuW')
   const navigate = useNavigate()
 
@@ -21,10 +21,10 @@ export function MenuW () {
       <Header />
       <section className='menu-options'>
         <Link to='/NewOrder'>
-          <button>New Order</button>
+          <button onClick={() => {setOrderN()}}>New Order</button>
         </Link>
         <Link to='/MyOrders'>
-          <button>My Orders</button>
+          <button >My Orders</button>
         </Link>
       </section>
       <button onClick={handleLogout} className='logout'><i className='fa-solid fa-right-from-bracket' /></button>
