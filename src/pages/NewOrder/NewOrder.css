@@ -22,8 +22,8 @@
 }
 
 .menu-types-selector {
-    width: 400px;
-    height: 100px;
+    width: 40rem;
+    height: 10rem;
     display: flex;
     justify-content: space-around;
     margin: 0 auto;
@@ -31,9 +31,9 @@
 }
 
 .option {
-    width: 150px;
-    height: 50px;
-    font-size: 20px;
+    width: 15rem;
+    height: 5rem;
+    font-size: 2rem;
     font-weight: bold;
     color: var(--emphasis-color);
     border-radius: 2rem;
@@ -56,16 +56,16 @@
 }
 
 .product {
-    width: 150px;
-    height: 100px;
+    width: 15rem;
+    height: 10rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 1rem;
     background-color: var(--emphasis-color);
     color: var(--main-color);
-    border-radius: 10px;
-    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    border-radius: 1rem;
+    box-shadow: .7rem .6rem 2.8rem .1rem rgba(0, 0, 0, 0.24);
     outline: none;
     transition: 0.2s all;
 }
@@ -81,7 +81,7 @@
 
 .product:active {
     transform: scale(0.98);
-    box-shadow: 3px 2px 22px 1px rgba(19, 244, 64, 0.24);
+    box-shadow: .3rem .2rem 2.2rem .1rem rgba(19, 244, 64, 0.24);
 }
 
 .product p {
@@ -102,30 +102,43 @@
     border: .5rem solid var(--emphasis-color);
 }
 
+.bill-container .order-info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 2rem;
+}
+
+.order-info form {
+    padding: 1rem;
+}
+
+.order-info label {
+    padding-right: 1rem;
+}
+
+.order-info form select {
+    font-size: 2rem;
+    color: var(--emphasis-color);
+    border-color: var(--emphasis-color);
+}
+
 .order-id {
     height: 10%;
-    font-size: 20px;
+    font-size: 2rem;
     text-align: end;
-    padding: 10px;
+    padding: 1rem;
 }
 
 .total {
-    border-top: solid 1px var(--emphasis-color);
-    font-size: 25px;
+    border-top: solid .1rem var(--emphasis-color);
+    font-size: 2.5rem;
     text-align: center;
 }
-
-/* .buttons-container {
-    width: 100%;
-    height: 10rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 
 .buttons-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 2rem;
 }

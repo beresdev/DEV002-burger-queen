@@ -36,7 +36,7 @@ function App () {
           ? (
             <>
               <Route path='/MenuW' element={<MenuW setOrderN={setOrderN}/>} />
-              <Route path='/NewOrder' element={<NewOrder order={orderNum} />} />
+              <Route path='/NewOrder' element={<NewOrder orderId={orderNum} />} />
               <Route path='/MyOrders' element={<MyOrders />} />
             </>
             )

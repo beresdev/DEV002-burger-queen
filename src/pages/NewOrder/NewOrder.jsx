@@ -4,12 +4,13 @@ import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { Footer } from "../../components/Footer/Footer";
 import { MenuButton } from "../../components/MenuButton/MenuButton";
 import { Order } from "../../components/Bill/Order";
+import { TablesForm } from '../../components/tablesForm/tableForm'
 
-
-export function NewOrder({order}) {
+export function NewOrder({orderId}) {
   const [isSelected, setIsSelected] = useState("breakfast");
   const [products, setProducts] = useState([]);
   const productsCopy = [...products];
+  const [table, setTable] = useState(1);
 
   const setProductProp = (data) => {
     const index = productsCopy.findIndex((element) => element.id === data.id);
@@ -41,7 +42,24 @@ export function NewOrder({order}) {
     setProducts(productsCopy);
   };
 
+  const settingTable = (id) => {
+    setTable(id);
+  }
+
+  
   const total = products.reduce((sum, item) => sum + item.subtotal, 0);
+  
+  const createObjectOrder = () => {
+    const order = {
+      orderId: orderId,
+      table: table,
+      products: products,
+      total: total,
+      status: 1
+    }
+    console.log(order)
+    return order;
+  }
 
   return (
     <main className="main-NewOrder">
@@ -71,14 +89,16 @@ export function NewOrder({order}) {
       </section>
       <section className="bill-section">
         <div className="bill-container">
-          <p className="order-id">Order id: {order}</p>
-          <input type="text" />
+          <div className="order-info">
+            <TablesForm settingTable={settingTable}/>
+            <p className="order-id">Order id: {orderId}</p>
+          </div>
           <Order products={products} productOperation={productOperation} />
           <p className="total">Total: $ {total}</p>
         </div>
         <div className="buttons-container">
           <button className='menu-button'>Cancel</button>
-          <button className='menu-button'>Send Kitchen</button>
+          <button className='menu-button' onClick={()=>{createObjectOrder()}}>Send Kitchen</button>
         </div>
       </section>
       <Footer>
