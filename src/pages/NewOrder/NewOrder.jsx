@@ -5,7 +5,8 @@ import { Footer } from "../../components/Footer/Footer";
 import { MenuButton } from "../../components/MenuButton/MenuButton";
 import { Order } from "../../components/Bill/Order";
 
-export function NewOrder() {
+
+export function NewOrder({order}) {
   const [isSelected, setIsSelected] = useState("breakfast");
   const [products, setProducts] = useState([]);
   const productsCopy = [...products];
@@ -70,17 +71,18 @@ export function NewOrder() {
       </section>
       <section className="bill-section">
         <div className="bill-container">
-          <p className="order-id">Order: mvjri9w0n</p>
+          <p className="order-id">Order id: {order}</p>
+          <input type="text" />
           <Order products={products} productOperation={productOperation} />
           <p className="total">Total: $ {total}</p>
         </div>
         <div className="buttons-container">
-          <MenuButton text="Cancel" />
-          <MenuButton text="Send Kitchen" />
+          <button className='menu-button'>Cancel</button>
+          <button className='menu-button'>Send Kitchen</button>
         </div>
       </section>
       <Footer>
-        <MenuButton text="NEW ORDER" route="/NewOrder" />
+        <MenuButton text="NEW ORDER" route="/NewOrder"/>
         <MenuButton text="MY ORDERS" route="/MyOrders" />
       </Footer>
     </main>

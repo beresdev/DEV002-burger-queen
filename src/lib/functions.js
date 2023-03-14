@@ -1,6 +1,7 @@
-
-// export const repeatedProducts = (array) = array.reduce((acc, product) => {
-//     acc[product] = ++acc[product] || 0;
-//     total = Object.values(acc);
-//     return total;
-//   }, {});
+export const orderNumber = () => {
+    const currentDate = new Date();
+    const seed = currentDate.getTime();
+    const randomNumber = Math.floor(Math.random() * seed);
+    console.log('T-No: ', randomNumber);
+    return randomNumber;
+}
