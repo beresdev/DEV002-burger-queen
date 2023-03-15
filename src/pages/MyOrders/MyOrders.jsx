@@ -4,7 +4,6 @@ import { MenuButton } from '../../components/MenuButton/MenuButton';
 import { Header } from '../../components/Header/Header'
 
 export function MyOrders ({orders, userEmail, setOrderN}) {
-
   return(
     <>
       <Header text={'My orders: '} userEmail={userEmail}/>

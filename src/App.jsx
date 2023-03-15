@@ -14,6 +14,7 @@ function App () {
   const [userEmail, setUserEmail] = useState('');
   const [orderNum, setOrderNum] = useState('');
   const [orders, setOrders] = useState([]);
+  const [uOrders, setUOrders] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -42,15 +43,23 @@ function App () {
     return unsubscribe;
   }, [])
 
+  const userOrders = () => {
+    const uOrders = orders.filter((order) => order.orderedBy === userEmail)
+    console.log(uOrders)
+    setUOrders(uOrders);
+  }
+
+
+
   return (
     <HashRouter>
       <Routes>
         {user
           ? (
             <>
-              <Route path='/MenuW' element={<MenuW setOrderN={setOrderN} userEmail={userEmail}/>} />
-              <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum} addOrder={addOrder} setOrderN={setOrderN} />} />
-              <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={orders} setOrderN={setOrderN}/>} />
+              <Route path='/MenuW' element={<MenuW setOrderN={setOrderN} userEmail={userEmail} filter={userOrders}/>} />
+              <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum} filter={userOrders} addOrder={addOrder} setOrderN={setOrderN} />} />
+              <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders} filter={userOrders} setOrderN={setOrderN}/>} />
             </>
             )
           : (
