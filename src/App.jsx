@@ -7,11 +7,12 @@ import { MenuW } from './pages/MenuW/MenuW'
 import { NewOrder } from './pages/NewOrder/NewOrder'
 import { MyOrders } from './pages/MyOrders/MyOrders'
 import { orderNumber } from './lib/functions.js'
-import { addOrder } from './firebase/firestoreFunctions'
+import { addOrder, onGetOrders } from './firebase/firestoreFunctions'
 
 function App () {
   const [user, setUser] = useState(false);
   const [orderNum, setOrderNum] = useState('');
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -31,8 +32,13 @@ function App () {
     }
   }
 
-  console.log(user)
-  console.log(orderNum)
+  useEffect(() => {
+    const unsubscribe = onGetOrders((querySnapshot) => {
+      const newOrders = querySnapshot.docs.map(doc => doc.data());
+      setOrders(newOrders);
+    });
+    return unsubscribe;
+  }, [])
 
   return (
     <HashRouter>
@@ -42,7 +48,7 @@ function App () {
             <>
               <Route path='/MenuW' element={<MenuW setOrderN={setOrderN}/>} />
               <Route path='/NewOrder' element={<NewOrder orderId={orderNum} addOrder={addOrder} setOrderN={setOrderN} />} />
-              <Route path='/MyOrders' element={<MyOrders />} />
+              <Route path='/MyOrders' element={<MyOrders orders={orders}/>} />
             </>
             )
           : (

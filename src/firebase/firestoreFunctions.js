@@ -1,7 +1,9 @@
 import { 
     addDoc,
     serverTimestamp,
-    colRef
+    colRef,
+    onSnapshot,
+    q
 } from './firestoreInit.js'
 
 export const addOrder = async (orderId, table, products, total) => {
@@ -19,4 +21,4 @@ export const addOrder = async (orderId, table, products, total) => {
     }
   };
 
-  export const onGetPosts = (callback) => onSnapshot(q, callback);
+  export const onGetOrders = (callback) => onSnapshot(q, callback);

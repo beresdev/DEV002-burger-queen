@@ -6,7 +6,7 @@ import { MenuButton } from "../../components/MenuButton/MenuButton";
 import { Order } from "../../components/Bill/Order";
 import { TablesForm } from '../../components/tablesForm/tableForm';
 
-export function NewOrder({orderId, addOrder, setOrderN}) {
+export function NewOrder({orderId, addOrder, setOrderN, onGetOrders}) {
   const [isSelected, setIsSelected] = useState("breakfast");
   const [products, setProducts] = useState([]);
   const productsCopy = [...products];
@@ -46,13 +46,14 @@ export function NewOrder({orderId, addOrder, setOrderN}) {
     setTable(id);
   }
 
-  
   const total = products.reduce((sum, item) => sum + item.subtotal, 0);
 
   const sendOrder = () => {
     if(products.length === 0)
     {
       alert("No hay prductos en la orden")
+    } else if(orderId === ''){
+      alert("Agrega numero de orden")
     } else {
       addOrder(orderId, table, products, total);
       setProducts([]);
@@ -106,8 +107,8 @@ export function NewOrder({orderId, addOrder, setOrderN}) {
         </div>
       </section>
       <Footer>
-        <MenuButton text="NEW ORDER" setOrderN={setOrderN}/>
-        <MenuButton text="MY ORDERS" route="/MyOrders" />
+        <MenuButton text="NEW ORDER" function={setOrderN}/>
+        <MenuButton text="MY ORDERS" route="/MyOrders"/>
       </Footer>
     </main>
   );
