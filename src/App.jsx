@@ -7,27 +7,40 @@ import { MenuW } from './pages/MenuW/MenuW'
 import { NewOrder } from './pages/NewOrder/NewOrder'
 import { MyOrders } from './pages/MyOrders/MyOrders'
 import { orderNumber } from './lib/functions.js'
+import { addOrder, onGetOrders } from './firebase/firestoreFunctions'
 
 function App () {
   const [user, setUser] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
   const [orderNum, setOrderNum] = useState('');
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) { setUser(true)
+        setUserEmail(user.email);
       localStorage.setItem("name",user.email);
       }
     })
     return unsubscribe
   }, [])
 
-  const setOrderN = () => {
-    const orderN = orderNumber(); 
-    setOrderNum(orderN);
+  const setOrderN = (string) => {
+    if(string === null) {
+      setOrderNum('');
+    } else {
+      const orderN = orderNumber(); 
+      setOrderNum(orderN);
+    }
   }
 
-  console.log(user)
-  console.log(orderNum)
+  useEffect(() => {
+    const unsubscribe = onGetOrders((querySnapshot) => {
+      const newOrders = querySnapshot.docs.map(doc => doc.data());
+      setOrders(newOrders);
+    });
+    return unsubscribe;
+  }, [])
 
   return (
     <HashRouter>
@@ -35,9 +48,9 @@ function App () {
         {user
           ? (
             <>
-              <Route path='/MenuW' element={<MenuW setOrderN={setOrderN}/>} />
-              <Route path='/NewOrder' element={<NewOrder orderId={orderNum} />} />
-              <Route path='/MyOrders' element={<MyOrders />} />
+              <Route path='/MenuW' element={<MenuW setOrderN={setOrderN} userEmail={userEmail}/>} />
+              <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum} addOrder={addOrder} setOrderN={setOrderN} />} />
+              <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={orders} setOrderN={setOrderN}/>} />
             </>
             )
           : (
