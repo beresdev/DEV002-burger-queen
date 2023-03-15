@@ -7,6 +7,7 @@ import { MenuW } from './pages/MenuW/MenuW'
 import { NewOrder } from './pages/NewOrder/NewOrder'
 import { MyOrders } from './pages/MyOrders/MyOrders'
 import { orderNumber } from './lib/functions.js'
+import { addOrder } from './firebase/firestoreFunctions'
 
 function App () {
   const [user, setUser] = useState(false);
@@ -21,9 +22,13 @@ function App () {
     return unsubscribe
   }, [])
 
-  const setOrderN = () => {
-    const orderN = orderNumber(); 
-    setOrderNum(orderN);
+  const setOrderN = (string) => {
+    if(string === null) {
+      setOrderNum('');
+    } else {
+      const orderN = orderNumber(); 
+      setOrderNum(orderN);
+    }
   }
 
   console.log(user)
@@ -36,7 +41,7 @@ function App () {
           ? (
             <>
               <Route path='/MenuW' element={<MenuW setOrderN={setOrderN}/>} />
-              <Route path='/NewOrder' element={<NewOrder orderId={orderNum} />} />
+              <Route path='/NewOrder' element={<NewOrder orderId={orderNum} addOrder={addOrder} setOrderN={setOrderN} />} />
               <Route path='/MyOrders' element={<MyOrders />} />
             </>
             )

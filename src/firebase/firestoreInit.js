@@ -1,9 +1,24 @@
 import { app } from './firebaseInit.js';
 
-import { getFirestore, serverTimestamp } from "firebase/firestore";
+import { getFirestore, serverTimestamp, addDoc, collection, query, orderBy, getDocs, onSnapshot, doc, getDoc, updateDoc } from "firebase/firestore";
 
-export const db = getFirestore(app);
+const db = getFirestore(app);
+const colRef = collection(db, 'orders');
+const q = query(colRef, orderBy('createdAt', 'desc'));
 
-
-export { serverTimestamp }
+export {
+  db,
+  colRef,
+  q,
+  collection,
+  query,
+  orderBy,
+  serverTimestamp,
+  addDoc,
+  getDocs,
+  onSnapshot,
+  doc,
+  getDoc,
+  updateDoc,
+};
 

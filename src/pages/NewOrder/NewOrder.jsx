@@ -4,9 +4,9 @@ import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { Footer } from "../../components/Footer/Footer";
 import { MenuButton } from "../../components/MenuButton/MenuButton";
 import { Order } from "../../components/Bill/Order";
-import { TablesForm } from '../../components/tablesForm/tableForm'
+import { TablesForm } from '../../components/tablesForm/tableForm';
 
-export function NewOrder({orderId}) {
+export function NewOrder({orderId, addOrder, setOrderN}) {
   const [isSelected, setIsSelected] = useState("breakfast");
   const [products, setProducts] = useState([]);
   const productsCopy = [...products];
@@ -48,17 +48,21 @@ export function NewOrder({orderId}) {
 
   
   const total = products.reduce((sum, item) => sum + item.subtotal, 0);
-  
-  const createObjectOrder = () => {
-    const order = {
-      orderId: orderId,
-      table: table,
-      products: products,
-      total: total,
-      status: 1
+
+  const sendOrder = () => {
+    if(products.length === 0)
+    {
+      alert("No hay prductos en la orden")
+    } else {
+      addOrder(orderId, table, products, total);
+      setProducts([]);
+      setOrderN(null);
     }
-    console.log(order)
-    return order;
+  }
+
+  const cancelOrder = () => {
+    setProducts([]);
+    setOrderN(null);
   }
 
   return (
@@ -97,12 +101,12 @@ export function NewOrder({orderId}) {
           <p className="total">Total: $ {total}</p>
         </div>
         <div className="buttons-container">
-          <button className='menu-button'>Cancel</button>
-          <button className='menu-button' onClick={()=>{createObjectOrder()}}>Send Kitchen</button>
+          <button className='menu-button' onClick={()=>{cancelOrder()}}>Cancel</button>
+          <button className='menu-button' onClick={()=>{sendOrder()}}>Send Kitchen</button>
         </div>
       </section>
       <Footer>
-        <MenuButton text="NEW ORDER" route="/NewOrder"/>
+        <MenuButton text="NEW ORDER" setOrderN={setOrderN}/>
         <MenuButton text="MY ORDERS" route="/MyOrders" />
       </Footer>
     </main>
