@@ -11,12 +11,14 @@ import { addOrder, onGetOrders } from './firebase/firestoreFunctions'
 
 function App () {
   const [user, setUser] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
   const [orderNum, setOrderNum] = useState('');
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) { setUser(true)
+        setUserEmail(user.email);
       localStorage.setItem("name",user.email);
       }
     })
@@ -46,9 +48,9 @@ function App () {
         {user
           ? (
             <>
-              <Route path='/MenuW' element={<MenuW setOrderN={setOrderN}/>} />
-              <Route path='/NewOrder' element={<NewOrder orderId={orderNum} addOrder={addOrder} setOrderN={setOrderN} />} />
-              <Route path='/MyOrders' element={<MyOrders orders={orders}/>} />
+              <Route path='/MenuW' element={<MenuW setOrderN={setOrderN} userEmail={userEmail}/>} />
+              <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum} addOrder={addOrder} setOrderN={setOrderN} />} />
+              <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={orders} setOrderN={setOrderN}/>} />
             </>
             )
           : (

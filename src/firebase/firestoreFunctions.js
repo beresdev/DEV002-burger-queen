@@ -14,7 +14,7 @@ export const addOrder = async (orderId, table, products, total) => {
         table: table,
         products: products,
         total: total,
-        status: 1
+        status: 'PENDIENTE'
       }).then(()=> {alert("Orden enviada");})
     } catch (error) {
       console.log(error);

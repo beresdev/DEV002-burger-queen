@@ -6,11 +6,11 @@ import { MenuButton } from "../../components/MenuButton/MenuButton";
 import { Order } from "../../components/Bill/Order";
 import { TablesForm } from '../../components/tablesForm/tableForm';
 
-export function NewOrder({orderId, addOrder, setOrderN, onGetOrders}) {
+export function NewOrder({userEmail, orderId, addOrder, setOrderN}) {
   const [isSelected, setIsSelected] = useState("breakfast");
   const [products, setProducts] = useState([]);
   const productsCopy = [...products];
-  const [table, setTable] = useState(1);
+  const [table, setTable] = useState('');
 
   const setProductProp = (data) => {
     const index = productsCopy.findIndex((element) => element.id === data.id);
@@ -68,7 +68,7 @@ export function NewOrder({orderId, addOrder, setOrderN, onGetOrders}) {
 
   return (
     <main className="main-NewOrder">
-      <Header />
+      <Header userEmail={userEmail}/>
       <section className="products-section">
         <div className="menu-types-selector">
           <button

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Header } from '../../components/Header/Header'
 import { logout } from '../../firebase/firebaseFunctions'
 
-export function MenuW ({setOrderN}) {
+export function MenuW ({setOrderN, userEmail}) {
   console.log('Entrando a MenuW')
   const navigate = useNavigate()
 
@@ -18,7 +18,7 @@ export function MenuW ({setOrderN}) {
   }
   return (
     <>
-      <Header />
+      <Header text={'Hello '} userEmail={userEmail}/>
       <section className='menu-options'>
         <Link to='/NewOrder'>
           <button onClick={() => {setOrderN()}}>New Order</button>
