@@ -18,7 +18,7 @@ function ActionButtons({order, rol}) {
             return <button>DELIVERED</button>
         }
     } else if(rol === 'HC') {
-        if(order.status === 'PENDIENTE') {
+        if(order.status === 'IN QUEUE') {
             return (
             <div>
                 <button>CANCEL</button>
@@ -29,7 +29,6 @@ function ActionButtons({order, rol}) {
             return <button>READY</button>
         }
     }
-
 }
 
 export function Order({orders, rol}) {
