@@ -6,10 +6,11 @@ import {
     q
 } from './firestoreInit.js'
 
-export const addOrder = async (orderId, table, products, total) => {
+export const addOrder = async (orderId, email, table, products, total) => {
     try {
       await addDoc(colRef, {
         createdAt: serverTimestamp(),
+        orderedBy: email,
         orderId: orderId,
         table: table,
         products: products,

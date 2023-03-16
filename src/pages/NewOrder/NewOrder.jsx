@@ -6,11 +6,13 @@ import { MenuButton } from "../../components/MenuButton/MenuButton";
 import { Order } from "../../components/Bill/Order";
 import { TablesForm } from '../../components/tablesForm/tableForm';
 
-export function NewOrder({userEmail, orderId, addOrder, setOrderN}) {
+export function NewOrder({userEmail, orderId, filter, addOrder, setOrderN}) {
   const [isSelected, setIsSelected] = useState("breakfast");
   const [products, setProducts] = useState([]);
   const productsCopy = [...products];
-  const [table, setTable] = useState('');
+  const [table, setTable] = useState(1);
+
+  console.log(userEmail);
 
   const setProductProp = (data) => {
     const index = productsCopy.findIndex((element) => element.id === data.id);
@@ -55,7 +57,7 @@ export function NewOrder({userEmail, orderId, addOrder, setOrderN}) {
     } else if(orderId === ''){
       alert("Agrega numero de orden")
     } else {
-      addOrder(orderId, table, products, total);
+      addOrder(orderId, userEmail, table, products, total);
       setProducts([]);
       setOrderN(null);
     }
@@ -108,7 +110,7 @@ export function NewOrder({userEmail, orderId, addOrder, setOrderN}) {
       </section>
       <Footer>
         <MenuButton text="NEW ORDER" function={setOrderN}/>
-        <MenuButton text="MY ORDERS" route="/MyOrders"/>
+        <MenuButton text="MY ORDERS" route="/MyOrders" function={filter}/>
       </Footer>
     </main>
   );

@@ -1,8 +1,9 @@
 import { React, useState, useEffect } from 'react'
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase/firebaseInit'
 import { Login } from './pages/Login/Login'
+import { NotFound } from './pages/NotFound/NotFound'
 import { MenuW } from './pages/MenuW/MenuW'
 import { NewOrder } from './pages/NewOrder/NewOrder'
 import { MyOrders } from './pages/MyOrders/MyOrders'
@@ -14,12 +15,15 @@ function App () {
   const [userEmail, setUserEmail] = useState('');
   const [orderNum, setOrderNum] = useState('');
   const [orders, setOrders] = useState([]);
+  const [uOrders, setUOrders] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) { setUser(true)
         setUserEmail(user.email);
-      localStorage.setItem("name",user.email);
+      } else {
+        setUser(false);
+        setUserEmail('');
       }
     })
     return unsubscribe
@@ -42,27 +46,45 @@ function App () {
     return unsubscribe;
   }, [])
 
+  const userOrders = () => {
+    const uOrders = orders.filter((order) => order.orderedBy === userEmail)
+    console.log(uOrders)
+    setUOrders(uOrders);
+  }
+
+  console.log(user)
+
   return (
-    <HashRouter>
-      <Routes>
-        {user
-          ? (
+    <BrowserRouter>
+        <Routes>
+          {userEmail === 'ana@laschidas.com' || userEmail === 'carlos@laschidas.com' && (
+              <>
+                <Route path='/MenuW' element={<MenuW  userEmail={userEmail} linkA="/NewOrder" buttonAfunction={setOrderN} textA='New Order' linkB="/MyOrders" buttonBfunction={userOrders} textB='My Orders'/>} />
+                <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum} filter={userOrders} addOrder={addOrder} setOrderN={setOrderN} />} />
+                <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders} filter={userOrders} setOrderN={setOrderN}/>} />
+                <Route path='/*' element={<Navigate to='/MenuW' />} />
+              </>
+          )}
+          {userEmail === 'benito@laschidas.com' || userEmail === 'bety@laschidas.com' &&(
             <>
-              <Route path='/MenuW' element={<MenuW setOrderN={setOrderN} userEmail={userEmail}/>} />
-              <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum} addOrder={addOrder} setOrderN={setOrderN} />} />
-              <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={orders} setOrderN={setOrderN}/>} />
+              <Route path='/Menu' element={<MenuW  userEmail={userEmail} linkA="/Orders" buttonAfunction={setOrderN} textA='Orders' linkB="/Stats" buttonBfunction={userOrders} textB='Stats'/>} />
+              <Route path='/*' element={<Navigate to='/Menu' />} />
             </>
-            )
-          : (
+          )}
+          {!user && (
             <>
               <Route path='/' element={<Login />} />
-              <Route path='*' element={<Login />} />
+              <Route path='*' element={<NotFound/>} />
             </>
-            )}
-        <Route path='/' element={<Login />} />
-      </Routes>
-    </HashRouter>
+          )}
+          <>
+            <Route path='/*' element={<Login />} />
+          </>
+        </Routes>
+      </BrowserRouter>
   )
 }
 
 export default App
+
+
