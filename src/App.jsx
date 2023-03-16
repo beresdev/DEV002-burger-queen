@@ -57,17 +57,18 @@ function App () {
   return (
     <BrowserRouter>
         <Routes>
-          {userEmail === 'ana@laschidas.com' || userEmail === 'carlos@laschidas.com' && (
+          {(userEmail === 'ana@laschidas.com' || userEmail === 'carlos@laschidas.com') && (
               <>
                 <Route path='/MenuW' element={<MenuW  userEmail={userEmail} linkA="/NewOrder" buttonAfunction={setOrderN} textA='New Order' linkB="/MyOrders" buttonBfunction={userOrders} textB='My Orders'/>} />
                 <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum} filter={userOrders} addOrder={addOrder} setOrderN={setOrderN} />} />
-                <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders} filter={userOrders} setOrderN={setOrderN}/>} />
+                <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders} filter={userOrders} setOrderN={setOrderN} rol='W'/>} />
                 <Route path='/*' element={<Navigate to='/MenuW' />} />
               </>
           )}
-          {userEmail === 'benito@laschidas.com' || userEmail === 'bety@laschidas.com' &&(
+          {(userEmail === 'benito@laschidas.com' || userEmail === 'bety@laschidas.com') &&(
             <>
               <Route path='/Menu' element={<MenuW  userEmail={userEmail} linkA="/Orders" buttonAfunction={setOrderN} textA='Orders' linkB="/Stats" buttonBfunction={userOrders} textB='Stats'/>} />
+              <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={orders} rol='HC'/>} />
               <Route path='/*' element={<Navigate to='/Menu' />} />
             </>
           )}

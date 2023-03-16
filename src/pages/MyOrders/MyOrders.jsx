@@ -3,13 +3,13 @@ import { Footer } from '../../components/Footer/Footer';
 import { MenuButton } from '../../components/MenuButton/MenuButton';
 import { Header } from '../../components/Header/Header'
 
-export function MyOrders ({orders, userEmail, setOrderN}) {
+export function MyOrders ({orders, userEmail, setOrderN, rol}) {
   return(
     <>
       <Header text={'My orders: '} userEmail={userEmail}/>
       <div className='myOrders-container'>
         <section className='orders-section'>
-          <Order orders={orders}/>
+          <Order orders={orders} rol={rol}/>
         </section>
         <Footer>
           <MenuButton text="NEW ORDER" function={setOrderN} route="/NewOrder"/>
