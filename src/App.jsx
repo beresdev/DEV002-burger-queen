@@ -8,7 +8,7 @@ import { MenuW } from './pages/MenuW/MenuW'
 import { NewOrder } from './pages/NewOrder/NewOrder'
 import { MyOrders } from './pages/MyOrders/MyOrders'
 import { orderNumber } from './lib/functions.js'
-import { addOrder, onGetOrders } from './firebase/firestoreFunctions'
+import { addOrder, onGetOrders, updateOrder } from './firebase/firestoreFunctions'
 
 function App () {
   const [user, setUser] = useState(false);
@@ -40,35 +40,35 @@ function App () {
 
   useEffect(() => {
     const unsubscribe = onGetOrders((querySnapshot) => {
-      const newOrders = querySnapshot.docs.map(doc => doc.data());
+      const newOrders = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
       setOrders(newOrders);
     });
     return unsubscribe;
   }, [])
 
-  const userOrders = () => {
-    const uOrders = orders.filter((order) => order.orderedBy === userEmail)
-    console.log(uOrders)
+  useEffect(() => {
+    const uOrders = orders.filter((order) => order.orderedBy === userEmail);
     setUOrders(uOrders);
-  }
-
-  console.log(user)
+  }, [orders, userEmail]);
 
   return (
     <BrowserRouter>
         <Routes>
           {(userEmail === 'ana@laschidas.com' || userEmail === 'carlos@laschidas.com') && (
               <>
-                <Route path='/MenuW' element={<MenuW  userEmail={userEmail} linkA="/NewOrder" buttonAfunction={setOrderN} textA='New Order' linkB="/MyOrders" buttonBfunction={userOrders} textB='My Orders'/>} />
-                <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum} filter={userOrders} addOrder={addOrder} setOrderN={setOrderN} />} />
-                <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders} filter={userOrders} setOrderN={setOrderN} rol='W'/>} />
+                <Route path='/MenuW' element={<MenuW  userEmail={userEmail} linkA="/NewOrder" buttonAfunction={setOrderN} textA='New Order' linkB="/MyOrders" textB='My Orders'/>} />
+                <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum}  addOrder={addOrder} setOrderN={setOrderN} />} />
+                <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders}  setOrderN={setOrderN} rol='W' updateFunction={updateOrder} text="NEW ORDER"/>} />
                 <Route path='/*' element={<Navigate to='/MenuW' />} />
               </>
           )}
           {(userEmail === 'benito@laschidas.com' || userEmail === 'bety@laschidas.com') &&(
             <>
-              <Route path='/Menu' element={<MenuW  userEmail={userEmail} linkA="/Orders" buttonAfunction={setOrderN} textA='Orders' linkB="/Stats" buttonBfunction={userOrders} textB='Stats'/>} />
-              <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={orders} rol='HC'/>} />
+              <Route path='/Menu' element={<MenuW  userEmail={userEmail} linkA="/Orders" textA='Orders' linkB="/Stats"  textB='Stats'/>} />
+              <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={orders} rol='HC' updateFunction={updateOrder} text="STATS"/>} />
               <Route path='/*' element={<Navigate to='/Menu' />} />
             </>
           )}
