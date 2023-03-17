@@ -16,14 +16,13 @@ function ProductsList ({products}) {
 function ActionButtons({order, rol, fun}) {
     if(rol === 'W') {
         if(order.status === 'READY') {
-            return <button onClick={(()=> fun(order.id, {status:'DELIVERED'}))}>DELIVERED</button>
+            return <button onClick={(()=> fun(order.id, {status:'DELIVERED', deliveredAt: new Date()}))}>DELIVERED</button>
         }
     } else if(rol === 'HC') {
         if(order.status === 'IN QUEUE') {
-            // return <button onClick={(()=> fun({status:'COOKING'}))}>COOK</button>
-            return <button onClick={(()=> fun(order.id, {status:'COOKING'}))}>COOK</button>
+            return <button onClick={(()=> fun(order.id, {status:'COOKING', cookingSince: new Date()}))}>COOK</button>
         } else if(order.status === 'COOKING') {
-            return <button onClick={(()=> fun(order.id, {status:'READY'}))}>READY</button>
+            return <button onClick={(()=> fun(order.id, {status:'READY', readyAt: new Date()}))}>READY</button>
         }
     }
 }
