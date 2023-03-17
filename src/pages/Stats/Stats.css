@@ -1,0 +1,21 @@
+.info-section {
+    width: 25rem;
+    border: solid;
+    display: flex;
+    font-size: 1.8rem;
+}
+
+.sections-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-section .concepts {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.8rem;
+}
+
+.details-section .order-list {
+    font-size: 1.6rem;
+}

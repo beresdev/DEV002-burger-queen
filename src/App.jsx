@@ -7,6 +7,7 @@ import { NotFound } from './pages/NotFound/NotFound'
 import { MenuW } from './pages/MenuW/MenuW'
 import { NewOrder } from './pages/NewOrder/NewOrder'
 import { MyOrders } from './pages/MyOrders/MyOrders'
+import { Stats } from './pages/Stats/Stats'
 import { orderNumber } from './lib/functions.js'
 import { addOrder, onGetOrders, updateOrder } from './firebase/firestoreFunctions'
 
@@ -61,14 +62,15 @@ function App () {
               <>
                 <Route path='/MenuW' element={<MenuW  userEmail={userEmail} linkA="/NewOrder" buttonAfunction={setOrderN} textA='New Order' linkB="/MyOrders" textB='My Orders'/>} />
                 <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum}  addOrder={addOrder} setOrderN={setOrderN} />} />
-                <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders}  setOrderN={setOrderN} rol='W' updateFunction={updateOrder} text="NEW ORDER"/>} />
+                <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders}  setOrderN={setOrderN} rol='W' updateFunction={updateOrder} text="NEW ORDER" route='/NewOrder'/>} />
                 <Route path='/*' element={<Navigate to='/MenuW' />} />
               </>
           )}
           {(userEmail === 'benito@laschidas.com' || userEmail === 'bety@laschidas.com') &&(
             <>
               <Route path='/Menu' element={<MenuW  userEmail={userEmail} linkA="/Orders" textA='Orders' linkB="/Stats"  textB='Stats'/>} />
-              <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={orders} rol='HC' updateFunction={updateOrder} text="STATS"/>} />
+              <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={orders} rol='HC' updateFunction={updateOrder} text="STATS" route='/Stats'/>} />
+              <Route path='/Stats' element={<Stats user={userEmail} orders={orders}/>} />
               <Route path='/*' element={<Navigate to='/Menu' />} />
             </>
           )}
