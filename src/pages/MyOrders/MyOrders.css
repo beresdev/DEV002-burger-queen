@@ -57,6 +57,15 @@
     padding: 1rem;
 }
 
+.order-container .status-button{
+    height: 3rem;
+    background-color: var(--complementary-color);
+    color: var(--emphasis-color);
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: solid .1rem var(--emphasis-color)
+}
+
 .button-section {
     position: relative;
     bottom: -5rem;
