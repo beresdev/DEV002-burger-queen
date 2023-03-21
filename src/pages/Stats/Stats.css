@@ -1,0 +1,85 @@
+.sections-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.date-section {
+    display: flex;
+    padding: 2rem;
+}
+
+.date-section p {
+    font-size: 1.8rem;
+    color: var(--emphasis-color);
+    padding: 1rem;
+    padding-top: 1.5rem;
+    font-weight: bold;
+}
+
+.date-section input {
+    font-size: 1.8rem;
+    border: none;
+    padding: 1rem;
+}
+
+.details-section {
+    width: 100%;
+
+}
+
+.details-section .concepts {
+    display: flex;
+    height: 5rem;
+    width: 90%;
+    margin: 0 auto;
+    gap: 2rem;
+    padding-top: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    border: solid;
+}
+
+.details-section .concepts p {
+    width: 14rem;
+}
+
+.order-list-section {
+    height: 35rem;
+    width: 90%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+
+.list-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 1rem;
+    list-style: none;
+    border: solid;
+    border-top: none;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.list-container li {
+    width: 14rem;
+}
+
+.info-section {
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 2rem;
+    font-size: 2rem;
+}
+
+.info-section p {
+    padding: 1rem;
+    font-weight: bold;
+}
