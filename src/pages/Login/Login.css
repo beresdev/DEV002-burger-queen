@@ -24,30 +24,20 @@
     margin-bottom: 4rem;
     font-size: 2rem;
     text-indent: 1rem;
+    border: solid 0.2rem var(--emphasis-color)
 }
 
-.form button {
+.form .login-button {
     width: 20rem;
     height: 5rem;
     border-radius: 1rem;
     background-color: var(--complementary-color);
     margin: 0 auto;
-}
-
-.form button a {
-    font-size: 2.5rem;
-    text-decoration: none;
+    font-size: 2rem;
     font-weight: bold;
-    background-color: var(--complementary-color);
-    color: var(--emphasis-color)
+    color: var(--emphasis-color);
+    box-shadow: 2px 2px 2px var(--emphasis-color);
+    border: none;
 }
 
-.form button:hover {
-  background-color: var(--emphasis-color);
-  cursor: pointer;
-}
 
-.form button a:hover {
-  background-color: var(--emphasis-color);
-  color: var(--main-color);
-}

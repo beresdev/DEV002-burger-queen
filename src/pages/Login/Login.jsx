@@ -26,11 +26,11 @@ export function Login () {
           <img src='/LasChidas_500x500.png' alt='logotipo-las-chidas' />
         </div>
         <form onSubmit={handleSubmit} className='form'>
-          <label>Username: </label>
+          <label>Email: </label>
           <input onChange={(e) => setEmail(e.target.value)} type='text' />
           <label>Password: </label>
           <input onChange={(e) => setPassword(e.target.value)} type='password' />
-          <button type='submit'>Iniciar Sesión</button>
+          <button className='login-button' type='submit'>Iniciar Sesión</button>
         </form>
       </section>
     </>
