@@ -22,22 +22,11 @@ export function Stats({user, orders, fdate}) {
     return (
         <>
           <Header userEmail={user}></Header>
-          <h1>STATS</h1>
           <div className='sections-container'>
-            <section className='info-section'>
-              <div className='filter'>
-                <div className='labels'>
-                  <p>Date: </p>
-                  <p>Orders: </p>
-                  <p>Total: </p>
-                </div>
-                <div className='values'>
-                    <input type="date" name="date" id="date" onChange={(e) => setformatedDate(fdate(e.target.value))} />
-                    <p>{totalOrders}</p>
-                    <p>$ {total}.00 </p>
-                </div>
-              </div>
-            <button className='menu-button' onClick={()=>{handleClick()}}>DETAILS</button>
+            <section className='date-section'>
+              <p>Date: </p>
+              <input type="date" name="date" id="date" onChange={(e) => setformatedDate(fdate(e.target.value))} />
+              <button className='menu-button' onClick={()=>{handleClick()}}>DETAILS</button>
             </section>
             <section className='details-section'>
                 <div className='concepts'>
@@ -49,6 +38,10 @@ export function Stats({user, orders, fdate}) {
                     <p>Delivery time</p>
                 </div>
                 <OrdersDetails orders={dateOrders} date={formatedDate}/>
+            </section>
+            <section className='info-section'>
+              <p>Orders: {totalOrders} </p>
+              <p>Total: $ {total}.00  </p>
             </section>
           </div>
           <Footer>

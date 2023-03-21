@@ -46,10 +46,11 @@
 
 .logout {
     position: absolute;
-    bottom: 0;
-    left: 1rem;
+    bottom: 1rem;
+    left: 2rem;
     font-size: 4rem;
     transform: rotate(180deg);
     text-decoration: none;
     color: var(--emphasis-color);
+    border: none;
 }
