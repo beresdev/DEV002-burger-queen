@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     margin: 1rem;
-    border: solid .3rem var(--emphasis-color);
+    border: solid .2rem var(--emphasis-color);
 }
 
 .order-container p {
@@ -31,12 +31,30 @@
     border: solid .5rem var(--complementary-color);
 }
 
+.order-container .order-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-bottom: solid;
+    background-color: var(--emphasis-color);
+}
+
+.order-container .order-info p {
+    background-color: var(--emphasis-color);
+    color: var(--main-color);
+}
+
+.order-container .order-info p:nth-child(1) {
+    color: var(--complementary-color);
+    
+}
+
 .order-list {
     overflow: auto;
     height: 11rem;
     list-style: none;
     font-size: 1.4rem;
-    padding-top: 1rem;
+    padding: 1rem;
 }
 
 .button-section {

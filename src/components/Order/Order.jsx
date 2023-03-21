@@ -30,7 +30,7 @@ function ActionButtons({order, rol, fun}) {
 export function Order({orders, rol, functionUpdate}) {
     return orders.map((order) => (
         <div key={order.orderId} className="order-container">
-            <div>
+            <div className="order-info">
                 <p>{order.status}</p>
                 <p>Table: {order.table}</p>
             </div>
