@@ -1,67 +1,54 @@
 import { Header } from '../../components/Header/Header'
+import { OrdersDetails } from '../../components/OrdersDetails/OrdersDetails'
 import { MenuButton } from '../../components/MenuButton/MenuButton';
 import { Footer } from '../../components/Footer/Footer';
+import { useState} from 'react';
 
-function OrderDetails({orders}) {
-    return(
-        <ul className="order-list">
-        {
-          orders.map(order => {
-            const startTime = order.createdAt.toDate();
-            const endTime = order.deliveredAt.toDate();
-            const timeDiff = endTime.getTime() - startTime.getTime();
-            const hours = Math.floor(timeDiff / 1000 / 60 / 60);
-            const minutes = Math.floor((timeDiff / 1000 / 60) % 60);
-            const seconds = Math.floor((timeDiff / 1000) % 60);
-            const timeToD = `${hours}h ${minutes}m ${seconds}s`;
-            return (
-                <>
-                  <div key={order.orderId}>
-                    <li>{order.orderId}   - 
-                        {order.createdAt.toDate().toLocaleTimeString()}   -
-                        {/* {order.cookingSince.toDate().toLocaleTimeString()} -
-                        {order.readyAt.toDate().toLocaleTimeString()} - */}
-                        {order.deliveredAt.toDate().toLocaleTimeString()}   -
-                        {timeToD}
-                     </li>
-                  </div>
-                </>
-            )
-            })
-        }
-    </ul>
-    )
-}
+export function Stats({user, orders, fdate}) {
+  const [formatedDate, setformatedDate] = useState('');
+  const [dateOrders, setDateOrders] = useState([]);
+  const [totalOrders, setTotalOrders] = useState('');
+  const [total, setTotal] = useState('')
 
-export function Stats({user, orders}) {
+  const handleClick = () => {
+    const filteredOrders = orders.filter(order => order.status === 'DELIVERED' && order.createdAt.toDate().toLocaleDateString() === formatedDate);
+    const totalO = filteredOrders.length;
+    const totalP = filteredOrders.reduce((sum, item) => sum + item.total, 0);
+    setDateOrders(filteredOrders);
+    setTotalOrders(totalO);
+    setTotal(totalP)
+  }
+
     return (
         <>
           <Header userEmail={user}></Header>
           <h1>STATS</h1>
           <div className='sections-container'>
             <section className='info-section'>
+              <div className='filter'>
                 <div className='labels'>
-                <p>Date: </p>
-                <p>Orders: </p>
-                <p>Total: </p>
+                  <p>Date: </p>
+                  <p>Orders: </p>
+                  <p>Total: </p>
                 </div>
                 <div className='values'>
-                    <input type="date" name="date" id="date" />
-                    <p>24</p>
-                    <p>$ </p>
+                    <input type="date" name="date" id="date" onChange={(e) => setformatedDate(fdate(e.target.value))} />
+                    <p>{totalOrders}</p>
+                    <p>$ {total}.00 </p>
                 </div>
-            <button onClick={()=>{OrderDetails()}}>DETAILS</button>
+              </div>
+            <button className='menu-button' onClick={()=>{handleClick()}}>DETAILS</button>
             </section>
             <section className='details-section'>
                 <div className='concepts'>
                     <p>Order Id</p>
                     <p>Created at</p>
-                    {/* <p>Cooking since</p>
-                    <p>Ready at</p> */}
+                    <p>Cooking since</p>
+                    <p>Ready at</p>
                     <p>Delivered at</p>
-                    <p>Time to deliver</p>
+                    <p>Delivery time</p>
                 </div>
-                <OrderDetails orders={orders}/>
+                <OrdersDetails orders={dateOrders} date={formatedDate}/>
             </section>
           </div>
           <Footer>

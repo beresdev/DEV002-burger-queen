@@ -1,21 +1,70 @@
+
 .info-section {
     width: 25rem;
-    border: solid;
+    height: 45rem;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 1.8rem;
+}
+
+.info-section .filter {
+    display: flex;
+    padding-bottom: 5rem;
+}
+
+.filter .labels p {
+    padding: 2rem 1rem;
+}
+
+.filter .values input {
+    padding: 2rem 0;
+}
+
+.filter .values p {
+    padding: 2rem 0;
 }
 
 .sections-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .details-section .concepts {
     display: flex;
+    height: 5rem;
     gap: 2rem;
+    padding-top: 1rem;
     font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.concepts p:nth-child(1) {
+    width: 14rem;
+}
+
+.concepts p:nth-child(n+2) {
+    width: 12rem;
 }
 
 .details-section .order-list {
     font-size: 1.6rem;
+}
+
+.list-container {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1rem;
+    list-style: none;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.list-container li:nth-child(1) {
+    width: 14rem;
+}
+
+.list-container li:nth-child(n+2) {
+    width: 12rem;
 }

@@ -8,7 +8,7 @@ import { MenuW } from './pages/MenuW/MenuW'
 import { NewOrder } from './pages/NewOrder/NewOrder'
 import { MyOrders } from './pages/MyOrders/MyOrders'
 import { Stats } from './pages/Stats/Stats'
-import { orderNumber } from './lib/functions.js'
+import { orderNumber, formatingDate } from './lib/functions.js'
 import { addOrder, onGetOrders, updateOrder } from './firebase/firestoreFunctions'
 
 function App () {
@@ -70,7 +70,7 @@ function App () {
             <>
               <Route path='/Menu' element={<MenuW  userEmail={userEmail} linkA="/Orders" textA='Orders' linkB="/Stats"  textB='Stats'/>} />
               <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={orders} rol='HC' updateFunction={updateOrder} text="STATS" route='/Stats'/>} />
-              <Route path='/Stats' element={<Stats user={userEmail} orders={orders}/>} />
+              <Route path='/Stats' element={<Stats user={userEmail} orders={orders} fdate = {formatingDate}/>} />
               <Route path='/*' element={<Navigate to='/Menu' />} />
             </>
           )}
