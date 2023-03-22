@@ -16,7 +16,11 @@ function App () {
   const [userEmail, setUserEmail] = useState('');
   const [orderNum, setOrderNum] = useState('');
   const [orders, setOrders] = useState([]);
+  const [todayOrders, setTodayOrders] = useState([]);
   const [uOrders, setUOrders] = useState([]);
+
+  const start = Date.now();
+  const today = new Date(start).toLocaleDateString();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -39,6 +43,7 @@ function App () {
     }
   }
 
+//all orders
   useEffect(() => {
     const unsubscribe = onGetOrders((querySnapshot) => {
       const newOrders = querySnapshot.docs.map((doc) => ({
@@ -50,10 +55,17 @@ function App () {
     return unsubscribe;
   }, [])
 
+  // filtered orders by day(today)
   useEffect(() => {
-    const uOrders = orders.filter((order) => order.orderedBy === userEmail);
+    const tOrders = orders.filter(order => order.createdAt && order.createdAt.toDate().toLocaleDateString() === today);
+    setTodayOrders(tOrders);
+  }, [orders]);
+
+   // filtered todayOrders by user(email)
+  useEffect(() => {
+    const uOrders = todayOrders.filter((order) => order.orderedBy === userEmail);
     setUOrders(uOrders);
-  }, [orders, userEmail]);
+  }, [todayOrders, userEmail]);
 
   return (
     <BrowserRouter>
@@ -69,7 +81,7 @@ function App () {
           {(userEmail === 'benito@laschidas.com' || userEmail === 'bety@laschidas.com') &&(
             <>
               <Route path='/Menu' element={<MenuW  userEmail={userEmail} linkA="/Orders" textA='Orders' linkB="/Stats"  textB='Stats'/>} />
-              <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={orders} rol='HC' updateFunction={updateOrder} text="STATS" route='/Stats'/>} />
+              <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={todayOrders} rol='HC' updateFunction={updateOrder} text="STATS" route='/Stats'/>} />
               <Route path='/Stats' element={<Stats user={userEmail} orders={orders} fdate = {formatingDate}/>} />
               <Route path='/*' element={<Navigate to='/Menu' />} />
             </>
