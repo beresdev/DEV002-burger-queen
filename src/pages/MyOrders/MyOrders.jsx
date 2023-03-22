@@ -3,10 +3,10 @@ import { Footer } from '../../components/Footer/Footer';
 import { MenuButton } from '../../components/MenuButton/MenuButton';
 import { Header } from '../../components/Header/Header'
 
-export function MyOrders ({orders, userEmail, setOrderN, rol, updateFunction, text, route}) {
+export function MyOrders ({textH, orders, date, userEmail, setOrderN, rol, updateFunction, text, route}) {
   return(
     <>
-      <Header text={'My orders: '} userEmail={userEmail}/>
+      <Header text={textH} userEmail={userEmail} date={date}/>
       <div className='myOrders-container'>
         <section className='orders-section'>
           <Order orders={orders} rol={rol} functionUpdate={updateFunction}/>
