@@ -6,7 +6,7 @@ import { MenuButton } from "../../components/MenuButton/MenuButton";
 import { Order } from "../../components/Bill/Order";
 import { TablesForm } from '../../components/tablesForm/tableForm';
 
-export function NewOrder({userEmail, orderId, filter, addOrder, setOrderN}) {
+export function NewOrder({userEmail, date, orderId, filter, addOrder, setOrderN}) {
   const [isSelected, setIsSelected] = useState("breakfast");
   const [products, setProducts] = useState([]);
   const productsCopy = [...products];
@@ -70,7 +70,7 @@ export function NewOrder({userEmail, orderId, filter, addOrder, setOrderN}) {
 
   return (
     <main className="main-NewOrder">
-      <Header userEmail={userEmail}/>
+      <Header text = 'NEW ORDER' userEmail={userEmail} date={date}/>
       <section className="products-section">
         <div className="menu-types-selector">
           <button

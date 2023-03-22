@@ -16,7 +16,15 @@ function App () {
   const [userEmail, setUserEmail] = useState('');
   const [orderNum, setOrderNum] = useState('');
   const [orders, setOrders] = useState([]);
+  const [todayOrders, setTodayOrders] = useState([]);
   const [uOrders, setUOrders] = useState([]);
+
+  const start = Date.now();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const now = new Date(start).toLocaleString('en-US', options);
+  const today = new Date(start).toLocaleDateString();
+
+  console.log(now)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -39,6 +47,7 @@ function App () {
     }
   }
 
+//all orders
   useEffect(() => {
     const unsubscribe = onGetOrders((querySnapshot) => {
       const newOrders = querySnapshot.docs.map((doc) => ({
@@ -50,27 +59,34 @@ function App () {
     return unsubscribe;
   }, [])
 
+  // filtered orders by day(today)
   useEffect(() => {
-    const uOrders = orders.filter((order) => order.orderedBy === userEmail);
+    const tOrders = orders.filter(order => order.createdAt && order.createdAt.toDate().toLocaleDateString() === today);
+    setTodayOrders(tOrders);
+  }, [orders]);
+
+   // filtered todayOrders by user(email)
+  useEffect(() => {
+    const uOrders = todayOrders.filter((order) => order.orderedBy === userEmail);
     setUOrders(uOrders);
-  }, [orders, userEmail]);
+  }, [todayOrders, userEmail]);
 
   return (
     <BrowserRouter>
         <Routes>
           {(userEmail === 'ana@laschidas.com' || userEmail === 'carlos@laschidas.com') && (
               <>
-                <Route path='/MenuW' element={<MenuW  userEmail={userEmail} linkA="/NewOrder" buttonAfunction={setOrderN} textA='New Order' linkB="/MyOrders" textB='My Orders'/>} />
-                <Route path='/NewOrder' element={<NewOrder userEmail={userEmail} orderId={orderNum}  addOrder={addOrder} setOrderN={setOrderN} />} />
-                <Route path='/MyOrders' element={<MyOrders userEmail={userEmail} orders={uOrders}  setOrderN={setOrderN} rol='W' updateFunction={updateOrder} text="NEW ORDER" route='/NewOrder'/>} />
+                <Route path='/MenuW' element={<MenuW  userEmail={userEmail} date={now} linkA="/NewOrder" buttonAfunction={setOrderN} textA='New Order' linkB="/MyOrders" textB='My Orders'/>} />
+                <Route path='/NewOrder' element={<NewOrder date={now} userEmail={userEmail} orderId={orderNum}  addOrder={addOrder} setOrderN={setOrderN} />} />
+                <Route path='/MyOrders' element={<MyOrders textH = 'MY ORDERS' date={now} userEmail={userEmail} orders={uOrders}  setOrderN={setOrderN} rol='W' updateFunction={updateOrder} text="NEW ORDER" route='/NewOrder'/>} />
                 <Route path='/*' element={<Navigate to='/MenuW' />} />
               </>
           )}
           {(userEmail === 'benito@laschidas.com' || userEmail === 'bety@laschidas.com') &&(
             <>
-              <Route path='/Menu' element={<MenuW  userEmail={userEmail} linkA="/Orders" textA='Orders' linkB="/Stats"  textB='Stats'/>} />
-              <Route path='/Orders' element={<MyOrders userEmail={userEmail} orders={orders} rol='HC' updateFunction={updateOrder} text="STATS" route='/Stats'/>} />
-              <Route path='/Stats' element={<Stats user={userEmail} orders={orders} fdate = {formatingDate}/>} />
+              <Route path='/Menu' element={<MenuW  userEmail={userEmail} date={now} linkA="/Orders" textA='Orders' linkB="/Stats"  textB='Stats'/>} />
+              <Route path='/Orders' element={<MyOrders textH = 'ORDERS' date={now} userEmail={userEmail} orders={todayOrders} rol='HC' updateFunction={updateOrder} text="STATS" route='/Stats'/>} />
+              <Route path='/Stats' element={<Stats textH = 'STATS' date={now} user={userEmail} orders={orders} fdate = {formatingDate}/>} />
               <Route path='/*' element={<Navigate to='/Menu' />} />
             </>
           )}

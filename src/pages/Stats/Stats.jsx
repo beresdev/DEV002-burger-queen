@@ -4,7 +4,7 @@ import { MenuButton } from '../../components/MenuButton/MenuButton';
 import { Footer } from '../../components/Footer/Footer';
 import { useState} from 'react';
 
-export function Stats({user, orders, fdate}) {
+export function Stats({user, textH, date, orders, fdate}) {
   const [formatedDate, setformatedDate] = useState('');
   const [dateOrders, setDateOrders] = useState([]);
   const [totalOrders, setTotalOrders] = useState('');
@@ -21,7 +21,7 @@ export function Stats({user, orders, fdate}) {
 
     return (
         <>
-          <Header userEmail={user}></Header>
+          <Header text={textH} userEmail={user} date={date}></Header>
           <div className='sections-container'>
             <section className='date-section'>
               <p>Date: </p>
