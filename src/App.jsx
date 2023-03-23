@@ -24,8 +24,6 @@ function App () {
   const now = new Date(start).toLocaleString('en-US', options)
   const today = new Date(start).toLocaleDateString()
 
-  console.log(now)
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {

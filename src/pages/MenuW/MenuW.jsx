@@ -4,13 +4,11 @@ import { Header } from '../../components/Header/Header'
 import { logout } from '../../firebase/firebaseFunctions'
 
 export function MenuW ({ userEmail, date, linkA, buttonAfunction, textA, linkB, buttonBfunction, textB }) {
-  console.log('Entrando a MenuW')
   const navigate = useNavigate()
 
   const handleLogout = async (e) => {
     try {
       await logout()
-      console.log('logout')
       navigate('/')
     } catch (e) {
       console.log(e.message)

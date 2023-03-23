@@ -12,8 +12,6 @@ export function NewOrder ({ userEmail, date, orderId, filter, addOrder, setOrder
   const productsCopy = [...products]
   const [table, setTable] = useState(1)
 
-  console.log(userEmail)
-
   const setProductProp = (data) => {
     const index = productsCopy.findIndex((element) => element.id === data.id)
     if (index === -1) {
