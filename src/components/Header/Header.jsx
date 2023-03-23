@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function Header ({text, userEmail, date}) {
+export function Header ({ text, userEmail, date }) {
   return (
     <nav className='nav'>
       <img src='/Las_chidas-logo-100x100.png' alt='logo_100x100px' />
