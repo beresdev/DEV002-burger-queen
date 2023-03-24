@@ -1,0 +1,39 @@
+.menu-options {
+  width: 100%;
+  height: 550px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.menu-options a {
+    width: 20rem;
+    height: 10rem;
+    place-self: center;
+    text-decoration: none;
+    border-radius: 1rem;
+}
+.menu-options a button {
+    width: 20rem;
+    height: 10rem;
+    background-color: var(--complementary-color);
+    border-radius: 1rem;
+    border: none;
+    font-size: 2rem;
+    color: var(--emphasis-color);
+    font-weight: bold;
+}
+
+.menu-options a button:hover {
+    cursor: pointer;
+}
+
+.logout {
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+    font-size: 4rem;
+    transform: rotate(180deg);
+    text-decoration: none;
+    color: var(--emphasis-color);
+    border: none;
+}

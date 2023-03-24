@@ -1,0 +1,144 @@
+.main-NewOrder {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 13rem calc(100% - 23rem) 10rem;
+    grid-template-areas:
+    "header header"
+    "menu bill"
+    "footer footer"
+    ;
+}
+
+.products-section {
+    height: 100%;
+    grid-area: menu;
+}
+
+.bill-section {
+    height: 100%;
+    grid-area: bill;
+}
+
+.menu-types-selector {
+    width: 40rem;
+    height: 10rem;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.option {
+    width: 15rem;
+    height: 5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--emphasis-color);
+    border-radius: 2rem;
+    border: none;
+    background-color: var(--complementary-color);
+}
+
+.option:hover {
+    cursor: pointer;
+    background-color: var(--emphasis-color);
+    color: var(--main-color)
+}
+
+.products-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product {
+    width: 15rem;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem;
+    background-color: var(--emphasis-color);
+    color: var(--main-color);
+    border-radius: 1rem;
+    box-shadow: .7rem .6rem 2.8rem .1rem rgba(0, 0, 0, 0.24);
+    outline: none;
+    transition: 0.2s all;
+}
+
+.product>p {
+    background-color: var(--emphasis-color);
+}
+
+.product:hover {
+    cursor: pointer;
+    background-color: var(--emphasis-color);
+}
+
+.product:active {
+    transform: scale(0.98);
+    box-shadow: .3rem .2rem 2.2rem .1rem rgba(19, 244, 64, 0.24);
+}
+
+.product p {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.product-price {
+    font-weight: bold;
+}
+
+.bill-container {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 5% auto 0;
+    border: .5rem solid var(--emphasis-color);
+}
+
+.bill-container .order-info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 2rem;
+}
+
+.order-info form {
+    padding: 1rem;
+}
+
+.order-info label {
+    padding-right: 1rem;
+}
+
+.order-info form select {
+    font-size: 2rem;
+    color: var(--emphasis-color);
+    border-color: var(--emphasis-color);
+}
+
+.order-id {
+    height: 10%;
+    font-size: 2rem;
+    text-align: end;
+    padding: 1rem;
+}
+
+.total {
+    border-top: solid .1rem var(--emphasis-color);
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.buttons-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}

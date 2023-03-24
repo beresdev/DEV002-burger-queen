@@ -1,0 +1,72 @@
+.myOrders-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.orders-section {
+    overflow: auto;
+    width: 100%;
+    height: 55rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.order-container {
+    width: 22rem;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    border: solid .2rem var(--emphasis-color);
+}
+
+.order-container p {
+    text-align: right;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.order-container:hover {
+    border: solid .5rem var(--complementary-color);
+}
+
+.order-container .order-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-bottom: solid;
+    background-color: var(--emphasis-color);
+}
+
+.order-container .order-info p {
+    background-color: var(--emphasis-color);
+    color: var(--main-color);
+}
+
+.order-container .order-info p:nth-child(1) {
+    color: var(--complementary-color);
+    
+}
+
+.order-list {
+    overflow: auto;
+    height: 11rem;
+    list-style: none;
+    font-size: 1.4rem;
+    padding: 1rem;
+}
+
+.order-container .status-button{
+    height: 3rem;
+    background-color: var(--complementary-color);
+    color: var(--emphasis-color);
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: solid .1rem var(--emphasis-color)
+}
+
+.button-section {
+    position: relative;
+    bottom: -5rem;
+}

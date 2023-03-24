@@ -1,0 +1,43 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form label {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--emphasis-color);
+}
+
+.form input {
+    width: 40rem;
+    height: 5rem;
+    border-radius: 1rem;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    text-indent: 1rem;
+    border: solid 0.2rem var(--emphasis-color)
+}
+
+.form .login-button {
+    width: 20rem;
+    height: 5rem;
+    border-radius: 1rem;
+    background-color: var(--complementary-color);
+    margin: 0 auto;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--emphasis-color);
+    box-shadow: 2px 2px 2px var(--emphasis-color);
+    border: none;
+}
+
+
