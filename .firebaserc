@@ -1,6 +1,6 @@
 {
   "projects": {
-    "las-chidas": "las-chidas"
+    "default": "las-chidas"
   },
   "targets": {},
   "etags": {}
